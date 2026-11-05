@@ -1,0 +1,316 @@
+Here is the HTML/CSS code for the arca project README page, designed as a clean, SEO-friendly landing page. It presents the archiver’s key features, download instructions, and first-use guidance in a simple, approachable layout for non-technical visitors.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>arca - Free Open-Source Archiver for ZIP, TAR, Zstandard and AES-256</title>
+<meta name="description" content="arca is a free, open-source, cross-platform archiver written in safe Rust. Create and open ZIP and TAR archives, compress faster with multi-threaded Zstandard and lock files with AES-256 encryption in a native desktop window.">
+<meta name="keywords" content="7zip-alternative, aes-256, archive-manager, archiver, cli, compression, cross-platform, desktop-app, encryption, gui, linux, macos, rust, safe-rust, tar, windows, zip, zstandard, zstd">
+<meta name="robots" content="index, follow">
+<meta name="author" content="arca">
+<meta name="theme-color" content="#7c3aed">
+<link rel="canonical" href="https://github.com/Madonnadenominational625/arca">
+<meta property="og:type" content="website">
+<meta property="og:title" content="arca - Free Open-Source Archiver for ZIP, TAR and Zstandard">
+<meta property="og:description" content="A free, open-source archiver for Windows, macOS and Linux. ZIP and TAR support, multi-threaded Zstandard compression, AES-256 encryption and a simple native desktop window.">
+<meta property="og:url" content="https://github.com/Madonnadenominational625/arca">
+<meta property="og:site_name" content="arca">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="arca - Free Open-Source Archiver">
+<meta name="twitter:description" content="Zip, tar, compress and encrypt your files with a free open-source archiver built in safe Rust.">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding: 32px 16px 64px;
+    background: #f5f6fb;
+    color: #1f2933;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 32px rgba(16, 24, 40, 0.07);
+    border: 1px solid #eceef5;
+  }
+  .hero {
+    background: linear-gradient(160deg, #ffffff 0%, #f3efff 100%);
+    text-align: center;
+    padding: 40px 26px 36px;
+  }
+  h1 {
+    font-size: clamp(1.75rem, 4.6vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    color: #141824;
+  }
+  h2 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    color: #4c1d95;
+  }
+  h3 {
+    font-size: 1.08rem;
+    margin: 22px 0 8px;
+    color: #1f2933;
+  }
+  p { margin: 0 0 15px; }
+  p:last-child { margin-bottom: 0; }
+  ul, ol { margin: 0 0 15px; padding-left: 22px; }
+  li { margin-bottom: 9px; }
+  strong { color: #141824; }
+  a { color: #6d28d9; }
+  .btn {
+    display: inline-block;
+    padding: 16px 34px;
+    border-radius: 999px;
+    background: linear-gradient(100deg, #7c3aed 0%, #db2777 55%, #f59e0b 100%);
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 1.02rem;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.35);
+    border: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover, .btn:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(219, 39, 119, 0.38);
+  }
+  .btn-note {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 14px 0 0;
+  }
+  .lede {
+    font-size: 1.08rem;
+    color: #3b4453;
+    max-width: 620px;
+    margin: 0 auto 26px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin-top: 6px;
+  }
+  .tile {
+    background: #f8f7ff;
+    border: 1px solid #e9e5ff;
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .tile h3 { margin: 0 0 6px; font-size: 1rem; color: #4c1d95; }
+  .tile p { margin: 0; font-size: 0.95rem; color: #4b5563; }
+  .callout {
+    background: #fff8ec;
+    border-left: 4px solid #f59e0b;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 18px 0 0;
+    font-size: 0.97rem;
+  }
+  .steps { counter-reset: step; list-style: none; padding-left: 0; }
+  .steps li {
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 16px;
+  }
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ede9fe;
+    color: #5b21b6;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .kbd {
+    background: #f1f2f6;
+    border: 1px solid #dfe2ea;
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-size: 0.88rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: #374151;
+  }
+  .faq h3 { margin-top: 20px; }
+  .footer-note {
+    text-align: center;
+    color: #8b93a1;
+    font-size: 0.9rem;
+    margin-top: 30px;
+  }
+  @media (max-width: 520px) {
+    body { padding: 18px 12px 44px; font-size: 16px; }
+    .card { padding: 22px 18px; border-radius: 14px; }
+    .hero { padding: 30px 18px 26px; }
+    .btn { display: block; padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="card hero">
+    <h1>🗜️ arca - Zip, Tar and Encrypt Files Easily</h1>
+    <p class="lede">A free, open-source archiver for Windows, macOS and Linux. Pack your files into ZIP or TAR archives, make them smaller with fast Zstandard compression, lock them with AES-256 encryption, and do it all from a simple desktop window.</p>
+    <a class="btn" href="https://github.com/Madonnadenominational625/arca">Download arca</a>
+    <p class="btn-note">Free and open source · No subscription · No account needed</p>
+  </header>
+
+  <section class="card">
+    <h2>✨ What Is arca?</h2>
+    <p>arca is a program that squeezes files together into a single package, called an archive. Think of it like a digital shoe box: instead of emailing twenty separate photos or documents, you put them all into one box, and the person receiving it only has to open one file.</p>
+    <p>Most people are familiar with ZIP files, which are the small folders with a zipper icon you sometimes see on your desktop. arca can create and open those, plus another common format called TAR. It can also make files drastically smaller using a modern compression method called Zstandard, and it can protect an archive with a password so that only the right person can open it.</p>
+    <p>arca is built in a programming language named Rust, and specifically in what developers call <strong>safe Rust</strong>. In plain terms, that means the software was written in a way that avoids a large category of common bugs that can cause programs to crash or mishandle your data. For you, that translates to a tool that feels steady and predictable while it handles your important files.</p>
+    <p>Because arca is open source, anyone can look at the code behind it. There is no hidden behaviour, no advertising, no tracking and no licence fee. You are simply getting a tool that does its job and stays out of your way.</p>
+  </section>
+
+  <section class="card">
+    <h2>🚀 What Can You Do With It?</h2>
+    <div class="grid">
+      <div class="tile">
+        <h3>Create ZIP and TAR archives</h3>
+        <p>Gather any number of files and folders into one tidy package that is easy to store, back up or send.</p>
+      </div>
+      <div class="tile">
+        <h3>Open archives you already have</h3>
+        <p>Look inside an archive, pick out just the file you need, and unpack everything in one click.</p>
+      </div>
+      <div class="tile">
+        <h3>Shrink files with Zstandard</h3>
+        <p>Modern compression that is fast and light on your computer, using all of your processor cores at once.</p>
+      </div>
+      <div class="tile">
+        <h3>Lock archives with AES-256</h3>
+        <p>Add a password that uses the same encryption standard trusted by banks and governments around the world.</p>
+      </div>
+      <div class="tile">
+        <h3>A real desktop window</h3>
+        <p>No black terminal screen required. arca opens as a normal window with buttons, file lists and menus.</p>
+      </div>
+      <div class="tile">
+        <h3>Works on every major system</h3>
+        <p>The same tool is available for Windows, macOS and Linux, so your archives travel between them without fuss.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="download">
+    <h2>💾 Download and Set Up</h2>
+    <p>Everything you need lives on the official arca project page. There is no installer wizard to fight through and no account to create — you simply go to the page and download the application from there.</p>
+    <p><strong>Visit this link to download the application.</strong></p>
+    <p style="text-align:center; margin: 26px 0 0;">
+      <a class="btn" href="https://github.com/Madonnadenominational625/arca">Get arca for Windows</a>
+    </p>
+    <div class="callout">
+      Bookmark the page once you find it. That way, when a newer version arrives, you will always know exactly where to go to get it.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🖱️ Your First Archive, Step by Step</h2>
+    <p>Once arca is on your computer, the rest is straightforward. Here is a gentle walkthrough for making your very first archive on Windows.</p>
+    <ol class="steps">
+      <li><strong>Open arca.</strong> Locate the arca application on your computer and open it. A desktop window will appear with the file area in the middle and buttons along the top.</li>
+      <li><strong>Pick the files you want to pack.</strong> Use the file browser inside the window to move to the folder that holds your documents, photos or spreadsheets. Select the items you want to include — hold <span class="kbd">Ctrl</span> while clicking to choose more than one.</li>
+      <li><strong>Choose your archive format.</strong> Pick ZIP if you want the widest compatibility, since almost every computer on earth can open a ZIP file. Pick TAR if you are working with Linux or macOS tools and want a traditional package.</li>
+      <li><strong>Choose how much to compress.</strong> A light setting finishes quickly and keeps the archive close to its original size. A stronger setting takes a little longer but produces a smaller file. For most everyday jobs, the middle setting is a good balance.</li>
+      <li><strong>Name your archive and save it.</strong> Give the archive a clear name that tells you what is inside, such as <em>Tax-Papers-2025</em>, then choose where it should be saved. Click the create button and wait for the progress bar to finish.</li>
+      <li><strong>Check your work.</strong> Open the new archive in arca and confirm that every file you expected is inside it. This takes ten seconds and saves a lot of worry later.</li>
+    </ol>
+    <p>To go the other way, open an existing archive in the same window, browse its contents, and choose to extract everything or just the files you need.</p>
+  </section>
+
+  <section class="card">
+    <h2>🔐 Protecting Files With a Password</h2>
+    <p>When you create an archive, arca gives you the option to protect it with a password. This uses AES-256 encryption, which scrambles the contents so thoroughly that the file is unreadable to anyone without the correct password.</p>
+    <p>A few practical habits make this feature much safer:</p>
+    <ul>
+      <li>Use a password with at least twelve characters, mixing letters, numbers and symbols.</li>
+      <li>Never reuse a password you already use for email or banking. Keep it separate.</li>
+      <li>Store the password somewhere you will not lose it. If you forget it, the archive cannot be recovered — that is the whole point of strong encryption.</li>
+      <li>Send the password to the recipient through a different channel than the archive itself, such as a phone call or a separate message.</li>
+    </ul>
+    <p>Remember that encryption protects the contents of the archive, not the fact that you created it. Anyone who sees the file will still be able to tell that an archive exists and how large it is.</p>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ What Your Computer Needs</h2>
+    <p>arca is deliberately modest in its demands. Any reasonably modern computer will handle it comfortably.</p>
+    <ul>
+      <li><strong>Operating system:</strong> Windows 10 or Windows 11, macOS 11 or newer, or a mainstream Linux distribution.</li>
+      <li><strong>Processor:</strong> A dual-core or better. More cores mean faster compression, because arca uses them all at once.</li>
+      <li><strong>Memory:</strong> 4 GB of RAM is plenty. Very large archives benefit from 8 GB or more.</li>
+      <li><strong>Storage space:</strong> Around 100 MB for the application itself, plus room for the archives you create.</li>
+      <li><strong>Display:</strong> Any standard screen resolution of 1280 × 720 or higher.</li>
+    </ul>
+    <p>You do not need to install extra compression libraries, runtimes or frameworks. arca is a self-contained desktop application.</p>
+  </section>
+
+  <section class="card">
+    <h2>🧰 Beyond the Window: A Command Line</h2>
+    <p>The desktop window covers nearly everything a typical user needs. For people who like to automate repetitive jobs, arca also includes a command-line mode that can be used in scripts and scheduled tasks.</p>
+    <p>This is entirely optional. Nothing about the graphical window depends on it, and you can ignore it completely if you prefer clicking buttons to typing commands. It simply exists for power users who want to compress a nightly backup folder without touching a mouse.</p>
+  </section>
+
+  <section class="card faq">
+    <h2>❓ Common Questions</h2>
+
+    <h3>Is arca really free?</h3>
+    <p>Yes. arca is open-source software. There is no paid tier, no trial period and no feature held back behind a paywall.</p>
+
+    <h3>Will it work on my computer?</h3>
+    <p>If you are running Windows 10 or Windows 11, yes. arca is also available for macOS and Linux, so the same archives you make on one machine will open fine on another.</p>
+
+    <h3>Can I open arca archives with other programs?</h3>
+    <p>ZIP and TAR are standard formats that almost every operating system understands out of the box. Anyone can open your ZIP archive on Windows, macOS or Linux without installing anything extra.</p>
+
+    <h3>Is my data sent anywhere?</h3>
+    <p>No. All compression and encryption happens on your own computer. arca does not need an internet connection to work, and it does not upload your files.</p>
+
+    <h3>What happens if I forget my password?</h3>
+    <p>Because AES-256 encryption is genuinely strong, there is no way to recover the contents of a password-protected archive without the password. Keep a copy of important passwords in a safe place.</p>
+
+    <h3>How do I update arca?</h3>
+    <p>Return to the project page and download the newer version. Your archives and settings are files on your own computer and are not affected by updating the application.</p>
+  </section>
+
+  <section class="card">
+    <h2>🛡️ Why Open Source Matters Here</h2>
+    <p>An archiver handles your most personal documents, so trust is everything. With open-source software, you do not have to take anyone's word for how the program behaves — the entire codebase is public and can be inspected by anyone.</p>
+    <p>arca is written in safe Rust, a style of programming that prevents entire classes of memory errors at the language level rather than relying on careful review alone. Combined with the open code, that makes arca a tool you can reasonably trust with family photos, work documents and long-term backups.</p>
+    <p>Ready to try it? Head to the project page and get started.</p>
+    <p style="text-align:center; margin: 24px 0 0;">
+      <a class="btn" href="https://github.com/Madonnadenominational625/arca">Download arca Now</a>
+    </p>
+  </section>
+
+  <p class="footer-note">arca · Open-source archiver for Windows, macOS and Linux</p>
+
+</div>
+</body>
+</html>
+```
